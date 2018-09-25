@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Todo;
 
 class TodoController extends Controller
 {
@@ -13,7 +14,8 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
+        $todos = Todo::all()->toArray();
+        return view('todos.index', compact('todos'));
     }
 
     /**
@@ -23,7 +25,7 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
+        return view('todos.create');
     }
 
     /**
@@ -34,7 +36,12 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todo = $this->validate(request(),[
+          'task' => 'required'
+        ]);
+
+        Todo::create($todo);
+        return back()->with('success', 'Todo has been successfully added');
     }
 
     /**
@@ -56,7 +63,8 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $todo = Todo::find($id);
+        return view('todos.edit', compact('todo', 'id'));
     }
 
     /**
@@ -68,7 +76,13 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $todo = Todo::find($id);
+        $this->validate(request(), [
+          'task' => 'required'
+        ]);
+        $todo->task = $request->get('task');
+        $todo->save();
+        return redirect('todos')->with('success', 'Todo has been updated');
     }
 
     /**
@@ -79,6 +93,9 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo = Todo::find($id);
+        $todo->delete();
+        return redirect('todos')->with('success', 'Todo has been deleted');
     }
+
 }
