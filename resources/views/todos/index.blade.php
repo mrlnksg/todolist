@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title> Todo List </title>
-    <link rel="stylesheet" href="css/todo.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/todo.css') }}" type="text/css">
   </head>
 
 {{-- 作ったTodoを表示させるページ --}}
@@ -52,6 +52,8 @@
             @endforeach
         </tbody>
       </table>
+      {{-- ページング --}}
+      <p>{{ $todos->links() }}</p>
     </div>
 
     {{-- todo作成ページに移動 --}}

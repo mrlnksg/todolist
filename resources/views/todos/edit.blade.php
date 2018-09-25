@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <title> Todo List </title>
-    <link rel="stylesheet" href="css/todo.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/todo.css') }}" type="text/css">
   </head>
 
 {{-- Todoを編集するページ --}}

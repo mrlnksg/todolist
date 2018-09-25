@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <title> Todo List </title>
-    <link rel="stylesheet" href="css/todo.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('/css/todo.css') }}" type="text/css">
   </head>
 
   {{-- Todoを新規作成するページ --}}
@@ -36,7 +36,7 @@
     </div>
 
     {{-- todo一覧ページに移動 --}}
-    <div class="container">
+    <div class="containers">
       <a href="{{url('todos')}}">show your todos</a>
     </div>
 
