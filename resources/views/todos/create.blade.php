@@ -1,15 +1,7 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<html>
-
-  <head>
-    <meta charset="utf-8">
-    <title> Todo List </title>
-    <link rel="stylesheet" href="{{ asset('/css/todo.css') }}" type="text/css">
-  </head>
-
+@section('child')
   {{-- Todoを新規作成するページ --}}
-  <body>
     <div class="container">
       <h2>Write down your todo!</h2>
       {{-- バリデーションエラー表示 --}}
@@ -36,10 +28,8 @@
     </div>
 
     {{-- todo一覧ページに移動 --}}
-    <div class="containers">
+    <div class="container">
       <a href="{{url('todos')}}">show your todos</a>
     </div>
 
-  <body>
-
-</html>
+@endsection
