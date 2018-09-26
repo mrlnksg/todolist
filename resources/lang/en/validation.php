@@ -105,6 +105,14 @@ return [
         ],
     ],
 
+    'custom' => [
+        'task' => [
+            'required' => 'There is nothing in the field',
+        ],
+    ],
+
+
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes
