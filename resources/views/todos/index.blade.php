@@ -39,12 +39,13 @@
               <form action="{{action('TodoController@destroy', $todo['id'])}}" method='post'>
                 {{csrf_field()}}
                 <input name="_method" type="hidden" value="DELETE">
-                <button class="btn" type="submit">delete</button></td>
+                <button class="btn btn-dell" type="submit">delete</button></td>
               </form>
           </tr>
             @endforeach
         </tbody>
       </table>
+
       {{-- ページング --}}
       <p>{{ $todos->links() }}</p>
     </div>
