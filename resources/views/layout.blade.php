@@ -8,8 +8,11 @@
     <script src="{{ asset('/js/app.js') }}"></script>
   </head>
 
-
   <body>
+    <header>
+      <p>header</p>
+    </header>
+
     @yield('child')
   </body>
 

@@ -5,7 +5,7 @@
   {{-- 作ったTodoを表示させるページ --}}
     <div class="container">
       <h2>Here's your list!</h2>
-      <h4>You have {{ $todos->count() }} tasks left.</h4>
+      <h4>You have {{ $count }} tasks left.</h4>
       {{-- 成功時表示(編集・削除) --}}
       @if (\Session::has('success'))
       <div class="alert">

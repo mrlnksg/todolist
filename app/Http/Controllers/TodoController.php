@@ -14,9 +14,14 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::all()->toArray();
+      //Todoテーブル内の全てのモデルを取得
+        //$todos = Todo::all();
+      //Todoテーブル内のIDを降順に、ページにつき10件ずつ取得
         $todos = Todo::orderBy('id','desc')->paginate(10);
-        return view('todos.index', compact('todos'));
+      //データの合計を数える
+        $count = Todo::count();
+      //todo.indexに変数todos,countを受け渡し、表示させる
+        return view('todos.index', compact('todos', 'count'));
     }
 
     /**
@@ -37,11 +42,13 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
+      //taskを必須項目とするバリデーションを取得
         $todo = $this->validate(request(),[
           'task' => 'required'
         ]);
-
+      //Todoテーブル内に、todoを新規作成
         Todo::create($todo);
+      //直前ページ（create画面）に成功メッセージを出す
         return back()->with('success', 'Todo has been successfully added');
     }
 
@@ -64,6 +71,7 @@ class TodoController extends Controller
      */
     public function edit($id)
     {
+      //指定したidを取得する
         $todo = Todo::find($id);
         return view('todos.edit', compact('todo', 'id'));
     }
@@ -77,11 +85,15 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
+      //指定したidを取得する
         $todo = Todo::find($id);
+      //taskを必須とするバリデーション
         $this->validate(request(), [
           'task' => 'required'
         ]);
+      //taskを上書き
         $todo->task = $request->get('task');
+      //保存
         $todo->save();
         return redirect('todos')->with('success', 'Todo has been updated');
     }
@@ -95,6 +107,7 @@ class TodoController extends Controller
     public function destroy($id)
     {
         $todo = Todo::find($id);
+      //削除
         $todo->delete();
         return redirect('todos')->with('success', 'Todo has been deleted');
     }
