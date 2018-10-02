@@ -1,3 +1,6 @@
+## todolist
+practice to create todolist with laravel5.5 + php7
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
