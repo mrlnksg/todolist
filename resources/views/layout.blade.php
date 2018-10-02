@@ -10,7 +10,7 @@
 
   <body>
     <header>
-      <p>header</p>
+      <p>Todo List --under construction</p>
     </header>
 
     @yield('child')

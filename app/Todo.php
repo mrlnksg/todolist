@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Todo extends Model
 {
-  //taskカラムに値を入れられるように宣言
+  //taskカラムに値を入れることを許可
     protected $fillable = ['task'];
 }

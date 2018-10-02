@@ -20,7 +20,7 @@ class TodoController extends Controller
         $todos = Todo::orderBy('id','desc')->paginate(10);
       //データの合計を数える
         $count = Todo::count();
-      //todo.indexに変数todos,countを受け渡し、表示させる
+      //todo.indexに変数todos,countを受け渡す
         return view('todos.index', compact('todos', 'count'));
     }
 
