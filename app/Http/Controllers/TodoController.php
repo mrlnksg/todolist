@@ -94,6 +94,8 @@ class TodoController extends Controller
         ]);
       //taskを上書き
         $todo->task = $request->get('task');
+      //labelを上書き
+        $todo->label = $request->get('label');
       //保存
         $todo->save();
         return redirect('todos')->with('success', 'Todo has been updated');
