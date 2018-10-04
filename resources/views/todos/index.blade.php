@@ -12,6 +12,16 @@
         <p>{{ \Session::get('success') }}</p>
       </div>
       @endif
+
+      {{-- 絞り込み --}}
+      <div class="">
+        <form action="{{action('TodoController@index')}}">
+          <input type="text" name="label">
+          <input type="submit" value="search">
+        </form>
+      </div>
+
+
       {{-- 表の部分 --}}
       <table class="table">
         <thead>

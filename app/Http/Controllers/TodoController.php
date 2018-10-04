@@ -16,8 +16,11 @@ class TodoController extends Controller
     {
       //Todoテーブル内の全てのモデルを取得
         //$todos = Todo::all();
-      //Todoテーブル内のIDを降順に、ページにつき10件ずつ取得
-        $todos = Todo::orderBy('id','desc')->paginate(10);
+
+        $todos = Todo::labelFilter(request('label')) //検索されたラベルを受け取る
+        ->orderBy('id','desc') //Todoテーブル内のIDを降順で
+        ->paginate(10); //ページにつき10件ずつ取得
+        
       //データの合計を数える
         $count = Todo::count();
       //todo.indexに変数todos,countを受け渡す
@@ -94,6 +97,8 @@ class TodoController extends Controller
         ]);
       //taskを上書き
         $todo->task = $request->get('task');
+      //labelを上書き
+        $todo->label = $request->get('label');
       //保存
         $todo->save();
         return redirect('todos')->with('success', 'Todo has been updated');
