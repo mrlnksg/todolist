@@ -14,7 +14,7 @@
       @endif
 
       {{-- 絞り込み --}}
-      <div class="">
+      <div class="filter">
         <form action="{{action('TodoController@index')}}">
           <input type="text" name="label">
           <input type="submit" value="search">
