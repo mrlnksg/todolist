@@ -20,7 +20,7 @@ class TodoController extends Controller
         $todos = Todo::labelFilter(request('label')) //検索されたラベルを受け取る
         ->orderBy('id','desc') //Todoテーブル内のIDを降順で
         ->paginate(10); //ページにつき10件ずつ取得
-        
+
       //データの合計を数える
         $count = Todo::count();
       //todo.indexに変数todos,countを受け渡す
@@ -45,10 +45,10 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-      //taskを必須項目とするバリデーションを取得
+
         $todo = $this->validate(request(),[
-          'task' => 'required',
-          'label' => 'present'
+          'task' => 'required',  //taskを必須項目とする
+          'label' => 'present'  //labelフィールドが存在する(中身は空でもOK)
         ]);
       //Todoテーブル内に、todoを新規作成
         Todo::create($todo);
