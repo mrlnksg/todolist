@@ -17,7 +17,9 @@
       <form method="post" action="{{action('TodoController@store')}}">
         {{csrf_field()}}
         task*:<input type="text" name="task"><br>
-        label:<input type="text" name="label">
+        deadline*:<input type="date" name="deadline"><br>
+        label:<input type="text" name="label"><br>
+
         <button type="submit">do it!</button>
       </form>
       {{-- 成功時表示（新規作成） --}}

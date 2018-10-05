@@ -20,8 +20,9 @@
         <form method="post" action="{{action('TodoController@update', $id)}}">
           {{csrf_field()}}
           <input name="_method" type="hidden" value="PATCH">
-          task*:<input type="text" name="task" value="{{$todo->task}}"></br>
-          label:<input type="text" name="label" value="{{$todo->label}}">
+          task*:<input type="text" name="task" value="{{$todo->task}}"><br>
+          label:<input type="text" name="label" value="{{$todo->label}}"><br>
+          deadline:<input type="date" name="deadline" value="{{$todo->deadline}}">
           <button type="submit">Update</button>
         </form>
       </div>

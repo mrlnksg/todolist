@@ -29,6 +29,7 @@
             <th>No.</th>
             <th>task</th>
             <th>label</th>
+            <th>deadline</th>
             <th>date</th>
             <th colspan="2">action</th>
           </tr>
@@ -39,6 +40,7 @@
             <td>{{$todo['id']}}</td>
             <td>{{$todo['task']}}</td>
             <td>{{$todo['label']}}</td>
+            <td>{{$todo['deadline']}}</td>
             {{-- taskが編集済の場合に編集後の日付にかえる --}}
             <td>
               @if($todo['created_at'] == $todo['updated_at'])

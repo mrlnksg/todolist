@@ -48,6 +48,7 @@ class TodoController extends Controller
 
         $todo = $this->validate(request(),[
           'task' => 'required',  //taskを必須項目とする
+          'deadline' => 'required|date|after_or_equal:today', //過去NG
           'label' => 'present'  //labelフィールドが存在する(中身は空でもOK)
         ]);
       //Todoテーブル内に、todoを新規作成
@@ -93,12 +94,15 @@ class TodoController extends Controller
         $todo = Todo::find($id);
       //taskを必須とするバリデーション
         $this->validate(request(), [
-          'task' => 'required'
+          'task' => 'required',
+          'deadline' => 'required|date|after:today'
         ]);
       //taskを上書き
         $todo->task = $request->get('task');
       //labelを上書き
         $todo->label = $request->get('label');
+      //deadlineを上書き
+        $todo->deadline = $request->get('deadline');
       //保存
         $todo->save();
         return redirect('todos')->with('success', 'Todo has been updated');
