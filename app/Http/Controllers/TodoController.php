@@ -23,8 +23,18 @@ class TodoController extends Controller
 
       //データの合計を数える
         $count = Todo::count();
-      //todo.indexに変数todos,countを受け渡す
-        return view('todos.index', compact('todos', 'count'));
+
+      //期限を過ぎたデータの合計を数える
+        $today = date('Y-m-d');
+        $expired = Todo::whereDate('deadline', '<', $today)
+          ->count();
+
+      //期限が今日までのデータの合計を数える
+        $withinToday = Todo::whereDate('deadline', '=', $today)
+          ->count();
+
+      //indexページに変数を受け渡す
+        return view('todos.index', compact('todos', 'count', 'expired', 'withinToday'));
     }
 
     /**
@@ -95,7 +105,7 @@ class TodoController extends Controller
       //taskを必須とするバリデーション
         $this->validate(request(), [
           'task' => 'required',
-          'deadline' => 'required|date|after:today'
+          'deadline' => 'required|date|after_or_equal:today'
         ]);
       //taskを上書き
         $todo->task = $request->get('task');

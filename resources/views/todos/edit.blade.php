@@ -23,7 +23,7 @@
           task*:<input type="text" name="task" value="{{$todo->task}}"><br>
           deadline*:<input type="date" name="deadline" value="{{$todo->deadline}}"><br>
           label:<input type="text" name="label" value="{{$todo->label}}"><br>
-
+          
           <button type="submit">Update</button>
         </form>
       </div>
