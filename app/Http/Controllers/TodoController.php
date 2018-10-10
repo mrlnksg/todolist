@@ -18,8 +18,9 @@ class TodoController extends Controller
         //$todos = Todo::all();
 
         $todos = Todo::labelFilter(request('label')) //検索されたラベルを受け取る
-        ->orderBy('id','desc') //Todoテーブル内のIDを降順で
-        ->paginate(10); //ページにつき10件ずつ取得
+          ->deadlineFilter(request('deadline')) //検索された期限を受け取る
+          ->orderBy('id','desc') //Todoテーブル内のIDを降順で
+          ->paginate(10); //ページにつき10件ずつ取得
 
       //データの合計を数える
         $count = Todo::count();
@@ -34,7 +35,7 @@ class TodoController extends Controller
           ->count();
 
       //indexページに変数を受け渡す
-        return view('todos.index', compact('todos', 'count', 'expired', 'withinToday'));
+        return view('todos.index', compact('todos', 'count', 'expired', 'withinToday', 'today'));
     }
 
     /**

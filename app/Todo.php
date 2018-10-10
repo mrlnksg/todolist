@@ -22,4 +22,18 @@ class Todo extends Model
       }
       return $query;
     }
+
+    /**
+      * deadlineで絞り込みをおこなう
+      * @param \Illuminate\Database\Eloquent\Builder $query
+      * @param string|null $deadline
+      * @return \Illuminate\Database\Eloquent\Builder
+    */
+    public function scopeDeadlineFilter($query, $deadline)
+    {
+      if (!is_null($deadline)) {
+        return $query->where('deadline', $deadline);
+      }
+      return $query;
+    }
 }
