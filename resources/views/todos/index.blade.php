@@ -8,7 +8,12 @@
       <h4>You have {{ $count }} tasks left.</h4>
       <ul>
         <li>There is {{ $expired }} expired tasks!</li>
-        <li>{{ $withinToday }} tasks have to be done by the end of the day.</li>
+        <li>{{ $withinToday }} tasks have to be done by the end of the day.
+          <form action="{{action('TodoController@index')}}">
+            <input type="hidden" name="deadline" value="{{$today}}">
+            <input type="submit" value="show them">
+          </form>
+        </li>
       </ul>
       {{-- 成功時表示(編集・削除) --}}
       @if (\Session::has('success'))
